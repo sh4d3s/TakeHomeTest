@@ -30,8 +30,8 @@
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>14</maven.compiler.target>
-        <maven.compiler.release>11</maven.compiler.release>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.release>1.8</maven.compiler.release>
         <sonar.projectKey>sh4d3s_TakeHomeTest</sonar.projectKey>
         <sonar.organization>sh4d3s</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
