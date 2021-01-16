@@ -2,10 +2,10 @@ package com.intercom.utility;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class FileHelper {
 
@@ -21,10 +21,11 @@ public class FileHelper {
         if (filePath == null || !Files.exists(Paths.get(filePath))) {
             throw new FileNotFoundException("File does not exist");
         }
-        content = Files.lines(Paths.get(filePath), StandardCharsets.UTF_8)
-                .collect(Collectors.joining(System.lineSeparator()));
-
+        Stream<String> lines = Files.lines(Paths.get(filePath));
+        content = lines.collect(Collectors.joining(System.lineSeparator()));
+        lines.close();
         return content;
     }
-
 }
+
+
