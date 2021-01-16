@@ -1,20 +1,19 @@
 package com.intercom.model;
 
 public class Customer {
-    private final int user_id;
+    private int user_id;
     private String name;
     private Location location;
 
-    public Customer(int user_id) {
+    public Customer(int user_id, String name, Location location) {
+
         this.user_id = user_id;
+        this.name = name;
+        this.location = location;
     }
 
     public Location getLocation() {
         return location;
-    }
-
-    public void setLocation(Location location) {
-        this.location = location;
     }
 
     public int getUser_id() {
@@ -25,7 +24,4 @@ public class Customer {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 }

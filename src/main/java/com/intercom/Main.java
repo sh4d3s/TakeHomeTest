@@ -23,8 +23,9 @@ public class Main {
             }
         }
         //Default case when only File Path is provided
-        else
+        else {
             handler = new Handler(args[0]);
+        }
         handler.runApplication();
 
     }

@@ -1,5 +1,6 @@
 package com.intercom.utility;
 
+import com.intercom.commons.Constants;
 import com.intercom.model.Customer;
 import com.intercom.model.Location;
 import org.json.JSONObject;
@@ -22,9 +23,11 @@ public class FileProcessor {
             JSONObject obj = new JSONObject(line);
 
             if (Validator.validate(obj)) {
-                Customer customer = new Customer(obj.getInt("user_id"));
-                customer.setName(obj.getString("name"));
-                customer.setLocation(new Location(obj.getDouble("latitude"), obj.getDouble("longitude")));
+                Customer customer = new Customer(
+                        obj.getInt(Constants.KEY_USER_ID),
+                        obj.getString(Constants.KEY_NAME),
+                        new Location(obj.getDouble(Constants.KEY_LATITUDE), obj.getDouble(Constants.KEY_LONGITUDE))
+                );
                 allCustomers.add(customer);
             }
         }

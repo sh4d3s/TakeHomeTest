@@ -7,7 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.stream.Collectors;
 
-public class FileHandler {
+public class FileHelper {
 
     /***
      * Returns the contents of the file as a string

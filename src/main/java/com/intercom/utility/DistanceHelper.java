@@ -1,5 +1,6 @@
 package com.intercom.utility;
 
+import com.intercom.commons.Constants;
 import com.intercom.model.Location;
 
 import java.math.RoundingMode;
@@ -19,8 +20,6 @@ public class DistanceHelper {
 
         else {
 
-            final double radiusEarth = 6371;
-
             double lat1Rad = Math.toRadians(location1.getLatitude());
             double long1Rad = Math.toRadians(location1.getLongitude());
 
@@ -36,10 +35,10 @@ public class DistanceHelper {
 
             double c = 2 * Math.asin(Math.sqrt(a));
 
-            DecimalFormat df = new DecimalFormat("#.###");
+            DecimalFormat df = new DecimalFormat(Constants.DISTANCE_ROUNDOFF_PATTERN);
             df.setRoundingMode(RoundingMode.CEILING);
 
-            return Double.parseDouble(df.format(radiusEarth * c));
+            return Double.parseDouble(df.format(Constants.RADIUS * c));
         }
 
     }

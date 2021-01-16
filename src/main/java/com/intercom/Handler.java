@@ -1,12 +1,14 @@
 package com.intercom;
 
 import com.intercom.model.Customer;
-import com.intercom.utility.FileHandler;
+import com.intercom.service.CustomerShortlistingServiceImplementation;
+import com.intercom.utility.FileHelper;
 import com.intercom.utility.FileProcessor;
 import org.json.JSONException;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.UncheckedIOException;
 import java.util.List;
 
 public class Handler {
@@ -40,16 +42,20 @@ public class Handler {
 
         String fileContents = null;
         try {
-            fileContents = FileHandler.getFileContents(filePath);
+            fileContents = FileHelper.getFileContents(filePath);
         } catch (FileNotFoundException fileNotFoundException) {
             System.out.println("The file path provided is invalid");
-        } catch (IOException ioException) {
+        }
+        catch (UncheckedIOException uncheckedIOException){
+            System.out.println("Incorrect file type");
+        }
+        catch (IOException ioException) {
             System.out.println("The application encountered an IO Exception");
         }
         try {
-            Service service = new Service(FileProcessor.getCustomerList(fileContents));
-            List<Customer> shortlistedCustomers = service.getCustomersByDistance(distance);
-            shortlistedCustomers = service.sortCustomersById(shortlistedCustomers);
+            CustomerShortlistingServiceImplementation customerShortlistingServiceImplementation = new CustomerShortlistingServiceImplementation(FileProcessor.getCustomerList(fileContents));
+            List<Customer> shortlistedCustomers = customerShortlistingServiceImplementation.getCustomersByDistance(distance);
+            shortlistedCustomers = customerShortlistingServiceImplementation.sortCustomersById(shortlistedCustomers);
             System.out.format("%-20s%10s\n", "Name", "User ID");
             shortlistedCustomers.forEach(customer -> System.out.format("%-20s%10d\n", customer.getName(), customer.getUser_id()));
         } catch (JSONException jsonException) {
