@@ -8,9 +8,9 @@ import com.intercom.utility.DistanceHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CustomerShortlistingServiceImplementation implements CustomerShortlistingService{
+public class CustomerShortlistingServiceImplementation implements CustomerShortlistingService {
     private final List<Customer> allCustomers;
-    private  final Location office = new Location(Constants.OFFICE_LATITUDE, Constants.OFFICE_LONGITUDE);
+    private final Location office = new Location(Constants.OFFICE_LATITUDE, Constants.OFFICE_LONGITUDE);
 
     public CustomerShortlistingServiceImplementation(List<Customer> allCustomers) {
         this.allCustomers = allCustomers;
