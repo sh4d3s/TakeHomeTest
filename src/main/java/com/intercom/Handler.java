@@ -45,12 +45,19 @@ public class Handler {
             fileContents = FileHelper.getFileContents(filePath);
         } catch (FileNotFoundException fileNotFoundException) {
             System.out.println("The file path provided is invalid");
+            System.exit(1);
         }
         catch (UncheckedIOException uncheckedIOException){
             System.out.println("Incorrect file type");
+            System.exit(1);
         }
         catch (IOException ioException) {
             System.out.println("The application encountered an IO Exception");
+            System.exit(1);
+        }
+        catch (Exception e){
+            System.out.println("An unsupported exception has occurred");
+            System.exit(1);
         }
         try {
             CustomerShortlistingServiceImplementation customerShortlistingServiceImplementation = new CustomerShortlistingServiceImplementation(FileProcessor.getCustomerList(fileContents));
