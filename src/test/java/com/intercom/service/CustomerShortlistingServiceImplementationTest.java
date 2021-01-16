@@ -1,7 +1,6 @@
-package com.intercom;
+package com.intercom.service;
 
 import com.intercom.model.Customer;
-import com.intercom.service.CustomerShortlistingServiceImplementation;
 import com.intercom.utility.FileProcessor;
 import org.junit.jupiter.api.Test;
 
@@ -18,16 +17,23 @@ class CustomerShortlistingServiceImplementationTest {
     List<Customer> list = FileProcessor.getCustomerList(jsonData);
     final CustomerShortlistingServiceImplementation customerShortlistingServiceImplementationTest = new CustomerShortlistingServiceImplementation(list);
 
+    @Test
+    void getCustomersByDistance_ShortlistingByDistance10KM_0CustomersShortlisted() {
+        assertEquals(0, customerShortlistingServiceImplementationTest.getCustomersByDistance(10).size(), "Incorrect Result for getCustomerByDistance");
+    }
 
     @Test
-    void getCustomersByDistance() {
-        assertEquals(0, customerShortlistingServiceImplementationTest.getCustomersByDistance(10).size(), "Incorrect Result for getCustomerByDistance");
+    void getCustomersByDistance_ShortlistingByDistance50KM_1CustomersShortlisted() {
         assertEquals(1, customerShortlistingServiceImplementationTest.getCustomersByDistance(50).size(), "Incorrect Result for getCustomerByDistance");
+    }
+
+    @Test
+    void getCustomersByDistance_ShortlistingByDistance315KM_2CustomersShortlisted() {
         assertEquals(2, customerShortlistingServiceImplementationTest.getCustomersByDistance(315).size(), "Incorrect Result for getCustomerByDistance");
     }
 
     @Test
-    void sortCustomersById() {
+    void sortCustomersById_SortingCustomersById_ListSortedInAscendingOrder() {
 
         list = customerShortlistingServiceImplementationTest.sortCustomersById(list);
         assertEquals(1, list.get(0).getUser_id(), "Sort module is not working");
