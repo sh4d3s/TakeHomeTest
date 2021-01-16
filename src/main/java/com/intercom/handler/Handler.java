@@ -1,4 +1,4 @@
-package com.intercom;
+package com.intercom.handler;
 
 import com.intercom.model.Customer;
 import com.intercom.service.CustomerShortlistingServiceImplementation;
@@ -19,7 +19,7 @@ public class Handler {
      * Constructor for initializing Handler object when only path to customers.txt is provided. By default distance is set as 100 km
      * @param filePath File path of customers.txt
      */
-    Handler(String filePath) {
+    public Handler(String filePath) {
         this.filePath = filePath;
         this.distance = 100.0;
     }
@@ -30,7 +30,7 @@ public class Handler {
      * @param distance Threshold distance for selecting customers
      *
      */
-    Handler(String filePath, double distance) {
+    public Handler(String filePath, double distance) {
         this.filePath = filePath;
         this.distance = distance;
     }
@@ -38,7 +38,7 @@ public class Handler {
     /***
      * Controls the flow of application
      */
-    protected void runApplication() {
+    public void runApplication() {
 
         String fileContents = null;
         try {
